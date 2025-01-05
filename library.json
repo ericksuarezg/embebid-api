@@ -1,0 +1,18 @@
+{
+    "name": "MqttManager",
+    "version": "1.0.0",
+    "description": "A library to manage MQTT connections and data publishing for IoT devices.",
+    "keywords": ["mqtt", "iot", "communication"],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/ericksuarezg/embebid-api.git"
+    },
+    "frameworks": ["arduino"],
+    "platforms": ["espressif32", "espressif8266"],
+    "dependencies": {
+      "wnatth3/WiFiManager": "^2.0.16-rc.2",
+      "knolleary/PubSubClient": "^2.8",
+      "bblanchon/ArduinoJson": "^7.0.3"
+    }
+}
+  
