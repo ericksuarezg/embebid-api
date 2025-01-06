@@ -31,6 +31,16 @@ void MqttManager::connectToMqtt() {
     }
 }
 
+String MqttManager::ensureMqttConnection() {
+    if (!client.connected()) {
+        Serial.println("MQTT connection lost. Reconnecting...");
+        connectToMqtt();
+        return "Reconnected to MQTT"; // Indica que se tuvo que reconectar
+    } else {
+        return "No issues"; // Mensaje general para reutilización
+    }
+}
+
 void MqttManager::messageCallback(char* topic, byte* payload, unsigned int length) {
     String message = "";
     for (unsigned int i = 0; i < length; i++) {
@@ -66,14 +76,6 @@ void MqttManager::handleClientLoop() {
     client.loop();
 }
 
-String MqttManager::getStatusMessage() {
-    if (mqttConnected) {
-        return "MQTT Connected";
-    } else {
-        return "MQTT Disconnected";
-    }
-}
-
 String MqttManager::getLastMessage(char* topic, byte* payload, unsigned int length) {
     String message = "";
     for (unsigned int i = 0; i < length; i++) {
@@ -81,4 +83,5 @@ String MqttManager::getLastMessage(char* topic, byte* payload, unsigned int leng
     }
     return message;
 }
+
 

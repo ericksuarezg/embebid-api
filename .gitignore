@@ -4,6 +4,7 @@
 *.pyc
 *.pyo
 __pycache__/
+main.cpp
 
 # Excluir archivos temporales y de sistema
 .DS_Store

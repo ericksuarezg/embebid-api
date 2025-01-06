@@ -1,6 +1,6 @@
 #ifndef MQTTMANAGER_H
 #define MQTTMANAGER_H
-#include <WiFi.h>
+
 #include <WiFiManager.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
@@ -24,12 +24,14 @@ public:
 
     void setupConnection();
     void connectToMqtt();
+    String ensureMqttConnection();
     void messageCallback(char* topic, byte* payload, unsigned int length);
     void publishData(float tempDHT, float humidity, float tempDS18);
     void handleClientLoop();
-    String getStatusMessage();
     String getLastMessage(char* topic, byte* payload, unsigned int length);
 };
 
 #endif
+
+
 
