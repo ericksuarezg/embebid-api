@@ -15,21 +15,24 @@ void MqttManager::setupConnection() {
         this->messageCallback(topic, payload, length);
     });
 }
-
-void MqttManager::connectToMqtt() {
+ 
+String MqttManager::connectToMqtt() {
     while (!client.connected()) {
         Serial.println("Attempting MQTT connection...");
         if (client.connect(mqttClientId, mqttUser, mqttPassword)) {
             Serial.println("Connected to MQTT broker");
             mqttConnected = true;
             client.subscribe(mqttUser);
+            return "MQTT Connected"; // Conexión exitosa
         } else {
             Serial.print("Failed to connect. State: ");
             Serial.println(client.state());
             delay(5000);
         }
     }
+    return "MQTT Failed"; // Conexión fallida (nunca debería alcanzar este punto en un bucle)
 }
+
 
 String MqttManager::ensureMqttConnection() {
     if (!client.connected()) {

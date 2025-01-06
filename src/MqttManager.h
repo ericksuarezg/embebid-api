@@ -23,7 +23,7 @@ public:
     MqttManager(const char* user, const char* password, const char* clientId);
 
     void setupConnection();
-    void connectToMqtt();
+    String connectToMqtt();
     String ensureMqttConnection();
     void messageCallback(char* topic, byte* payload, unsigned int length);
     void publishData(float tempDHT, float humidity, float tempDS18);
