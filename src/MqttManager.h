@@ -25,7 +25,7 @@ public:
     void setupConnection();
     String connectToMqtt();
     String ensureMqttConnection();
-    void messageCallback(char* topic, byte* payload, unsigned int length);
+    String messageCallback(char* topic, byte* payload, unsigned int length);
     void publishData(float tempDHT, float humidity, float tempDS18);
     void handleClientLoop();
     String getLastMessage(char* topic, byte* payload, unsigned int length);

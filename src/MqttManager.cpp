@@ -44,13 +44,22 @@ String MqttManager::ensureMqttConnection() {
     }
 }
 
-void MqttManager::messageCallback(char* topic, byte* payload, unsigned int length) {
+String MqttManager::messageCallback(char* topic, byte* payload, unsigned int length) {
     String message = "";
     for (unsigned int i = 0; i < length; i++) {
         message += (char)payload[i];
     }
     Serial.println("Message received: " + message);
+
+    // Integración con la pantalla LCD para mostrar el mensaje recibido
+    String displayMessage = "Topic: ";
+    displayMessage += topic;
+    displayMessage += " Msg: ";
+    displayMessage += message;
+
+    return displayMessage; // Retornar el mensaje completo para ser consumido
 }
+
 
 void MqttManager::publishData(float tempDHT, float humidity, float tempDS18) {
     DynamicJsonDocument jsonDoc(256);
